@@ -16,8 +16,10 @@ docker with this command:
 
 ```shell
 docker build -t kimim/odoo .
-docker run -d -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo -e POSTGRES_DB=postgres --name db postgres:10
-docker run -v /mnt/d/workspace/odoo:/mnt/extra-addons -p 8088:8088 -p 8069:8069 --name odoo --link db:db -t kimim/odoo
+docker run -d -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo \
+    -e POSTGRES_DB=postgres --name db postgres:10
+docker run -v /mnt/d/workspace/odoo:/mnt/extra-addons -p 8088:8088 -p 8069:8069 \
+    --name odoo --link db:db -t kimim/odoo
 ```
 
 Then open vscode workspace in `D:\workspace\docker\workspace` and execute
