@@ -25,4 +25,4 @@ Then open vscode workspace in `D:\workspace\docker\workspace` and execute
 
 When the status bar turns to orange, you are connected to the instance in docker.
 
-![vscode in debugging](./image/vscode.png)
+![vscode in debugging](./images/vscode.png)
