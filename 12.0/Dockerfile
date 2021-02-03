@@ -78,7 +78,6 @@ RUN curl -o odoo.deb -sSL http://nightly.odoo.com/${ODOO_VERSION}/nightly/deb/od
 # Copy entrypoint script and Odoo configuration file
 COPY ./entrypoint.sh /
 COPY ./odoo.conf /etc/odoo/
-COPY ./odoo /usr/bin/odoo
 
 # Add debugpy
 RUN pip install debugpy

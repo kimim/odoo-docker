@@ -13,7 +13,7 @@ DB_ARGS=()
 function check_config() {
     param="$1"
     value="$2"
-    if grep -q -E "^\s*\b${param}\b\s*=" "$ODOO_RC" ; then       
+    if grep -q -E "^\s*\b${param}\b\s*=" "$ODOO_RC" ; then
         value=$(grep -E "^\s*\b${param}\b\s*=" "$ODOO_RC" |cut -d " " -f3|sed 's/["\n\r]//g')
     fi;
     DB_ARGS+=("--${param}")
@@ -28,15 +28,15 @@ case "$1" in
     -- | odoo)
         shift
         if [[ "$1" == "scaffold" ]] ; then
-            exec odoo "$@"
+            exec /usr/bin/python3 -m debugpy --listen 0.0.0.0:8088 /usr/bin/odoo "$@"
         else
             wait-for-psql.py ${DB_ARGS[@]} --timeout=30
-            exec odoo "$@" "${DB_ARGS[@]}"
+            exec /usr/bin/python3 -m debugpy --listen 0.0.0.0:8088 /usr/bin/odoo "$@" "${DB_ARGS[@]}"
         fi
         ;;
     -*)
         wait-for-psql.py ${DB_ARGS[@]} --timeout=30
-        exec odoo "$@" "${DB_ARGS[@]}"
+        exec /usr/bin/python3 -m debugpy --listen 0.0.0.0:8088 /usr/bin/odoo "$@" "${DB_ARGS[@]}"
         ;;
     *)
         exec "$@"
